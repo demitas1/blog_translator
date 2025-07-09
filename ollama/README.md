@@ -97,10 +97,23 @@ sudo systemctl stop ollama
 sudo systemctl disable ollama
 ```
 
+### モデルの保存場所を変更
+
+使用する環境にあわせてマウントパスを設定してください
+
+- `docker/docker-compose.yml`
+
+```
+    volumes:
+      - /mnt/ext-ssd1/Application/ai_models/ollama:/root/.ollama
+```
+
 ### Docker で Ollama を起動
 
 ```
+cd docker
 docker compose up -d
+
 docker ps
 docker compose logs ollama
 ollama ps
@@ -116,5 +129,4 @@ ollama create translation-helper -f Modelfile
 
 ```
 ollama run translation-helper "To configure the API_KEY, edit the config.json file in the /etc/app/ directory."
-
 ```
