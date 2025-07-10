@@ -1,5 +1,10 @@
 # Ollamaをインストール
 
+- Linux
+- Docker (Linux)
+- Docker (macOS)
+
+
 ## Linux
 
 ```
@@ -63,7 +68,7 @@ ollama run translation-helper "To configure the API_KEY, edit the config.json fi
 
 ```
 
-## Docker
+## Docker (Linux)
 
 ### NVidia Container Toolkit のインストール
 
@@ -129,4 +134,29 @@ ollama create translation-helper -f Modelfile
 
 ```
 ollama run translation-helper "To configure the API_KEY, edit the config.json file in the /etc/app/ directory."
+```
+
+## Docker (macOS)
+
+```
+cd docker/macos
+docker compose up -d
+```
+
+### Modelfileをコンテナにコピー
+
+```
+docker cp ./Modelfile ollama:/tmp/Modelfile
+```
+
+### コンテナ内でモデルを作成
+
+```
+docker exec -it ollama ollama create my-model -f /tmp/Modelfile
+```
+
+### 一時ファイルを削除
+
+```
+docker exec -it ollama rm /tmp/Modelfile
 ```
